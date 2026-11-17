@@ -1,0 +1,10 @@
+STRING 9
+MIN
+PUSH pear
+PUSH apple
+PUSH zebra
+MIN
+MAX
+POP
+POP
+TOP

@@ -1,0 +1,13 @@
+3 12
+PUT a 1
+PUT b 2
+PUT c 3
+GET a
+GET b
+PUT d 4
+GET c
+PUT e 5
+GET a
+GET b
+GET d
+GET e

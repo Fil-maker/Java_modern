@@ -1,0 +1,13 @@
+12
+OPEN alice 1000
+OPEN bob 250
+TRANSFER alice bob 300
+WITHDRAW bob 600
+TRANSFER bob carol 10
+DEPOSIT alice -5
+DEPOSIT carol -5
+OPEN bob 1
+TRANSFER bob alice 550
+BALANCE alice
+BALANCE bob
+OPEN carol 0

@@ -1,0 +1,9 @@
+OK
+OK
+2
+EVICT a
+MISS
+3
+EVICT b
+-5
+HITS 3 MISSES 1

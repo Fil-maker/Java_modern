@@ -1,0 +1,12 @@
+STRING 11
+PUSH b
+PUSH ab
+PUSH abc
+PUSH ba
+PUSH z
+MIN
+MAX
+POP
+POP
+MIN
+MAX
