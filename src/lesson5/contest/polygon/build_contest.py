@@ -53,11 +53,26 @@ def contest_xml(problems):
 def contest_md(problems):
     rows = "\n".join(f"| {letter} | {name} | 10 |" for letter, name, _ in problems)
     groups = "\n".join(f"| {letter} | {g1} | {g2} |" for letter, _, (g1, g2) in problems)
+    files = "\n".join(f"| {letter} | `problems/{letter}-{name.split(' — ')[0]}.zip` |" for letter, name, _ in problems)
     return f"""# {CONTEST_NAME}
 
-Пакеты задач — в `problems/`, пакет соревнования — `contest.zip`.
-
 ВНИМАНИЕ: пакеты содержат ответы. Не публиковать и не загружать в открытый доступ.
+
+## Как загружать
+
+Импорт задачи из Polygon («polygon problem import») принимает **один пакет задачи** —
+архив, в корне которого лежит `problem.xml`. Это файлы из `problems/`:
+
+| Буква | Файл |
+|---|---|
+{files}
+
+Загрузите их по одному и добавьте задачи в соревнование под буквами A–D.
+
+`contest.zip` — пакет соревнования целиком (`contest.xml` и задачи в `problems/<буква>/`).
+`problem.xml` в его корне нет, поэтому импорт задачи его не примет
+(ошибка «problem.xml not found»). Он нужен только системам, которые умеют импортировать
+соревнование из Polygon целиком.
 
 ## Задачи
 
@@ -103,11 +118,12 @@ def contest_md(problems):
 
 def main():
     by_short = {t[1]: t for t in TASKS}
-    if CONTEST_OUT.exists():
-        shutil.rmtree(CONTEST_OUT)
+    # чистим содержимое, а не саму папку: её может держать открытой проводник или терминал
+    CONTEST_OUT.mkdir(parents=True, exist_ok=True)
+    for item in CONTEST_OUT.iterdir():
+        shutil.rmtree(item) if item.is_dir() else item.unlink()
     names = []
     contest_zip = CONTEST_OUT / "contest.zip"
-    CONTEST_OUT.mkdir(parents=True)
     with zipfile.ZipFile(contest_zip, "w", zipfile.ZIP_DEFLATED) as cz:
         for letter, short, desc1, desc2 in CONTEST:
             task_dir, _, tl, checker, solutions = by_short[short]

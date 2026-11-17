@@ -52,6 +52,8 @@ python src/lesson5/contest/polygon/build_packages.py
 python src/lesson5/contest/polygon/build_contest.py
 ```
 
+В тестирующую систему загружайте пакеты задач по одному: `out/lesson5-contest/problems/A-safe-calc.zip` … `D-lru-cache.zip`. В корне каждого лежит `problem.xml`. Импорт задачи из Polygon не примет `contest.zip` с ошибкой «problem.xml not found»: это пакет всего соревнования, задачи в нём лежат в `problems/<буква>/`.
+
 ## Запуск решения
 
 На примере задачи A:
