@@ -1,0 +1,8 @@
+2 7
+PUT a 1
+PUT b 2
+PUT a 3
+PUT c 4
+GET a
+GET b
+GET c
